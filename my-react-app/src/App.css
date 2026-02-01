@@ -1,0 +1,140 @@
+.toolbox {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.toolbox input {
+  padding: 10px;
+  font-size: 16px;
+  width: 250px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.insert-button {
+  padding: 10px 15px;
+  font-size: 16px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.insert-button:hover {
+  background-color: #218838;
+}
+
+.status-message {
+  margin: 10px 0;
+  text-align: center;
+  color: green;
+  font-weight: bold;
+}
+
+/* Modal styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 8px;
+  width: 600px;
+  position: relative;
+}
+
+.dialog-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 22px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+}
+
+/* Neater Tables */
+.time-log-table, .summary-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+.time-log-table th, .summary-table th,
+.time-log-table td, .summary-table td {
+  border: 1px solid #ccc; /* Line between columns and rows */
+  padding: 10px 15px;
+  text-align: left;
+}
+
+.time-log-table th, .summary-table th {
+  background-color: #f0f0f0;
+  font-weight: bold;
+}
+
+.time-log-table tbody tr:nth-child(even),
+.summary-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.time-log-table tbody tr:hover,
+.summary-table tbody tr:hover {
+  background-color: #e8f4ff;
+}
+.section-toggle-buttons {
+  margin: 15px 0;
+  text-align: center;
+}
+
+.toggle-section-btn {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.toggle-section-btn:hover {
+  background-color: #45a049;
+}
+
+.status-message {
+  text-align: center;
+  font-weight: 500;
+  color: green;
+  margin-top: 10px;
+}
+.section-toggle-buttons {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.section-toggle-buttons button {
+  padding: 10px 20px;
+  margin: 0 10px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.section-toggle-buttons button.active-tab {
+  background-color: #0056b3;
+}

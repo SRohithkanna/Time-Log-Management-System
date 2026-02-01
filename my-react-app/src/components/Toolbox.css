@@ -1,0 +1,34 @@
+.toolbox {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #f3f3f3;
+  border-radius: 6px;
+}
+
+.right-tools {
+  display: flex;
+  gap: 10px;
+}
+
+.search-box {
+  padding: 6px 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.insert-button {
+  padding: 6px 12px;
+  font-size: 14px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.insert-button:hover {
+  background-color: #0056b3;
+}
