@@ -8,6 +8,7 @@ import Toolbox from './components/Toolbox';
 import Dialog from './components/Dialog';
 
 function App() {
+  
   const [timeLogs, setTimeLogs] = useState([]);
   const [formData, setFormData] = useState({
     id: null,
@@ -158,64 +159,85 @@ function App() {
   ? timeLogs.filter((log) => log.name === selectedProspect)
   : timeLogs;
 
-  return (
-    <div className="container">
+return (
+  <div className="app-container">
+    
+    {/* Header */}
+    <div className="header">
       <h1>Time Log Management</h1>
-
-      {message && <p style={{ color: 'red', textAlign: 'center' }}>{message}</p>}
-
-      <Toolbox
-        onInsert={() => {
+      <button
+        className="primary-btn"
+        onClick={() => {
           setIsEditing(false);
           resetForm();
           setIsDialogOpen(true);
         }}
-      />
+      >
+        + Add Log
+      </button>
+    </div>
 
-      <div className="filter-section">
-        <label htmlFor="prospectFilter">Select Prospect: </label>
+    {/* Status Message */}
+    {message && (
+      <div className={`status-message ${message.includes("Error") || message.includes("Failed") ? "error" : "success"}`}>
+        {message}
+      </div>
+    )}
+
+    {/* Filter Section */}
+    <div className="filter-card">
+      <div className="filter-row">
+        <label>Select Prospect:</label>
         <select
-          id="prospectFilter"
           value={selectedProspect}
           onChange={(e) => setSelectedProspect(e.target.value)}
         >
-          <option value="">--  --</option>
+          <option value="">All Prospects</option>
           {getUniqueProspects().map((name) => (
             <option key={name} value={name}>
               {name}
             </option>
           ))}
         </select>
-      </div>
 
-      <div className="toggle-section" style={{ textAlign: 'center', marginBottom: '10px' }}>
-        <button onClick={() => setShowSummary((prev) => !prev)}>
-          {showSummary ? 'Hide Prospect Summary' : 'Show Prospect Summary'}
+        <button
+          className="secondary-btn"
+          onClick={() => setShowSummary((prev) => !prev)}
+        >
+          {showSummary ? "Hide Summary" : "Show Summary"}
         </button>
       </div>
-
-      <Dialog open={isDialogOpen} onClose={() => setIsDialogOpen(false)}>
-        <TimeLogForm
-          formData={formData}
-          setFormData={setFormData}
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
-          isEditing={isEditing}
-          setIsEditing={setIsEditing}
-        />
-      </Dialog>
-
-      {selectedProspect && (
-        <TimeLogTable
-          timeLogs={filteredTimeLogs}
-          handleEdit={handleEdit}
-          handleDelete={handleDelete}
-        />
-      )}
-
-      {showSummary && <ProspectSummary prospectSummary={getProspectSummary()} />}
     </div>
-  );
+
+    {/* Table */}
+    <div className="card">
+      <TimeLogTable
+        timeLogs={filteredTimeLogs}
+        handleEdit={handleEdit}
+        handleDelete={handleDelete}
+      />
+    </div>
+
+    {/* Summary */}
+    {showSummary && (
+      <div className="card">
+        <ProspectSummary prospectSummary={getProspectSummary()} />
+      </div>
+    )}
+
+    {/* Modal */}
+    <Dialog open={isDialogOpen} onClose={() => setIsDialogOpen(false)}>
+      <TimeLogForm
+        formData={formData}
+        setFormData={setFormData}
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+        isEditing={isEditing}
+      />
+    </Dialog>
+  </div>
+);
+
 }
 
 export default App;

@@ -10,121 +10,121 @@ function TimeLogForm({
   closeForm
 }) {
   return (
-    <div className="form-section modal-form">
-      <div className="form-header">
-        <h2>{isEditing ? 'Edit Time Log' : 'Add New Time Log'}</h2>
-        <button className="close-button" onClick={closeForm}>×</button>
+  <div className="modal-form">
+    <div className="modal-header">
+      <h2>{isEditing ? "Edit Time Log" : "Add New Time Log"}</h2>
+      <button className="close-btn" onClick={closeForm}>×</button>
+    </div>
+
+    <form onSubmit={handleSubmit} className="form-grid">
+
+      {/* Date */}
+      <div className="form-group">
+        <label>Date</label>
+        <input
+          type="date"
+          name="date"
+          value={formData.date}
+          onChange={handleChange}
+          required
+        />
       </div>
-      <form onSubmit={handleSubmit} className="time-log-form">
-        <div className="form-group">
-          <label htmlFor="date">Date:</label>
-          <input
-            type="date"
-            id="date"
-            name="date"
-            value={formData.date}
-            onChange={handleChange}
-            required
-          />
-        </div>
 
-        <div className="form-group">
-          <label htmlFor="name">Prospect Name:</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            placeholder="e.g., Sobha Realty"
-            required
-          />
-        </div>
+      {/* Prospect Name */}
+      <div className="form-group">
+        <label>Prospect Name</label>
+        <input
+          type="text"
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+          placeholder="e.g., Sobha Realty"
+          required
+        />
+      </div>
 
-        <div className="form-group">
-          <label htmlFor="resourceName">Resource Name:</label>
-          <input
-            type="text"
-            id="resourceName"
-            name="resourceName"
-            value={formData.resourceName}
-            onChange={handleChange}
-            placeholder="e.g., Abhinandana"
-          />
-        </div>
+      {/* Resource Name */}
+      <div className="form-group">
+        <label>Resource Name</label>
+        <input
+          type="text"
+          name="resourceName"
+          value={formData.resourceName}
+          onChange={handleChange}
+          placeholder="e.g., Abhinandana"
+        />
+      </div>
 
-        <div className="form-group">
-          <label htmlFor="effortHours">Effort in Hours:</label>
-          <input
-            type="number"
-            id="effortHours"
-            name="effortHours"
-            value={formData.effortHours}
-            onChange={handleChange}
-            placeholder="e.g., 8"
-            min="0"
-            step="0.5"
-            required
-          />
-        </div>
+      {/* Effort Hours */}
+      <div className="form-group">
+        <label>Effort (Hours)</label>
+        <input
+          type="number"
+          name="effortHours"
+          value={formData.effortHours}
+          onChange={handleChange}
+          min="0"
+          step="0.5"
+          required
+        />
+      </div>
 
-        <div className="form-group">
-          <label htmlFor="remarks">Remarks:</label>
-          <textarea
-            id="remarks"
-            name="remarks"
-            value={formData.remarks}
-            onChange={handleChange}
-            placeholder="e.g., Checklist Configuration"
-            rows="3"
-          ></textarea>
-        </div>
+      {/* Start Date */}
+      <div className="form-group">
+        <label>Prospect Start Date</label>
+        <input
+          type="date"
+          name="startDate"
+          value={formData.startDate}
+          onChange={handleChange}
+        />
+      </div>
 
-        <div className="form-group">
-          <label htmlFor="startDate">Prospect Start Date:</label>
-          <input
-            type="date"
-            id="startDate"
-            name="startDate"
-            value={formData.startDate}
-            onChange={handleChange}
-          />
-        </div>
+      {/* Onboarded Date */}
+      <div className="form-group">
+        <label>Onboarded Date</label>
+        <input
+          type="date"
+          name="onboardedDate"
+          value={formData.onboardedDate}
+          onChange={handleChange}
+        />
+      </div>
 
-        <div className="form-group">
-          <label htmlFor="onboardedDate">Prospect Onboarded Date:</label>
-          <input
-            type="date"
-            id="onboardedDate"
-            name="onboardedDate"
-            value={formData.onboardedDate}
-            onChange={handleChange}
-          />
-        </div>
+      {/* Status */}
+      <div className="form-group">
+        <label>Status</label>
+        <select
+          name="status"
+          value={formData.status}
+          onChange={handleChange}
+        >
+          <option value="Active">Active</option>
+          <option value="On Hold">On Hold</option>
+          <option value="Completed">Completed</option>
+          <option value="Zero">Zero</option>
+          <option value="Unknown">Unknown</option>
+        </select>
+      </div>
 
-        <div className="form-group">
-          <label htmlFor="status">Prospect Status:</label>
-          <select
-            id="status"
-            name="status"
-            value={formData.status}
-            onChange={handleChange}
-          >
-            <option value="Active">Active</option>
-            <option value="On Hold">On Hold</option>
-            <option value="Completed">Completed</option>
-            <option value="Zero">Zero</option>
-            <option value="Unknown">Unknown</option>
-          </select>
-        </div>
+      {/* Remarks (Full Width) */}
+      <div className="form-group full-width">
+        <label>Remarks</label>
+        <textarea
+          name="remarks"
+          value={formData.remarks}
+          onChange={handleChange}
+          placeholder="e.g., Checklist Configuration"
+          rows="3"
+        />
+      </div>
 
-        <button type="submit" className="submit-button">
-          {isEditing ? 'Update Log' : 'Add Log'}
-        </button>
-
+      {/* Buttons */}
+      <div className="form-actions">
         {isEditing && (
           <button
             type="button"
+            className="cancel-btn"
             onClick={() => {
               setIsEditing(false);
               setFormData({
@@ -139,14 +139,19 @@ function TimeLogForm({
                 status: 'Active'
               });
             }}
-            className="cancel-button"
           >
-            Cancel Edit
+            Cancel
           </button>
         )}
-      </form>
-    </div>
-  );
+
+        <button type="submit" className="submit-btn">
+          {isEditing ? "Update Log" : "Add Log"}
+        </button>
+      </div>
+    </form>
+  </div>
+);
+
 }
 
 export default TimeLogForm;
